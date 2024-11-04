@@ -87,7 +87,7 @@
       </counter>
       <counter>
         <item-type type-id="universal-connector" type="Universal Connector" />
-        <value>123</value>
+        <value>122</value>
       </counter>
       <counter>
         <item-type type-id="constraint-connector" type="Constraint Connector" />
@@ -1396,9 +1396,6 @@
     </item>
     <item id="a35ebdbce077488aabe607c52ffa296f" cid="PROP235" type="property" creation-date="10/29/2024 11:20:51" visibility="private" />
     <item id="6cb68d179c834bf8bb807ece92cf2dfc" cid="PROP055" type="property" creation-date="10/28/2024 19:00:48" visibility="private" />
-    <item id="3afe281f58504136b087f702b51f50fb" cid="ELEM106" type="control-flow" name="wrong username or password" creation-date="11/04/2024 20:42:26" from="2b6e18cfdb9241f9aa1ba0e845df44f1" to="6905236b914847cd8540460319c19115" visibility="package" guard="" weight="">
-      <control-flow from="2b6e18cfdb9241f9aa1ba0e845df44f1" to="6905236b914847cd8540460319c19115" visibility="package" guard="" weight="" />
-    </item>
     <item id="7179c6f67c504bc9bd3af60331f3c7a7" veid="66d33ab44cc545e98f5e3f72221947aa" cid="REL070" type="relationship" creator="" creation-date="10/28/2024 11:33:50" from="569995fb1cf74429b59e47b8a04cd377" to="4b4bc5823ec7400690d3297efa1d2aa4" visibility="package">
       <relation from="569995fb1cf74429b59e47b8a04cd377" to="4b4bc5823ec7400690d3297efa1d2aa4" derived="false">
         <start-role id="umlar-1375a9bc-2c4a-432b-b669-9322f2bd1846" name="" navigability="" association-type="association" visibility="private" property-ref="f0b64fedd1c4453ba678f9d6be6c9693" />
@@ -2201,9 +2198,6 @@
         <special-requirements />
         <issues />
       </use-case>
-    </item>
-    <item id="6905236b914847cd8540460319c19115" cid="ACT061" type="action" name="Redirect to the login page." creation-date="11/04/2024 20:40:20" visibility="undefined">
-      <action locally-reentrant="false" />
     </item>
     <item id="5f52e57d688943b79f61cfc90f028b0b" veid="f4daab6787824b3baab1386e43f39025" cid="ES176" type="activation-bar" name="ExecutionSpecification124" owner="4f04a3f2ae3a4329b85ae422bc1dcacb" creation-date="10/29/2024 06:53:50" visibility="undefined">
       <activation-bar lifeline-ref="4f04a3f2ae3a4329b85ae422bc1dcacb" />
@@ -6614,7 +6608,7 @@
           </item>
         </layer>
       </diagram>
-      <diagram type="uml-activity" id="p8eeed06c04e446218a7cb2e417b32945_271976260" name="Modify" order-index="6" overview-order-index="7" thumbnail-color="#FF0000FF" uid="" name-style="" auto-routed-paths="false" default-line-style="default" view-location="-492,102" zoom="0.8">
+      <diagram type="uml-activity" id="p8eeed06c04e446218a7cb2e417b32945_271976260" name="Modify" order-index="6" overview-order-index="7" thumbnail-color="#FF0000FF" uid="" name-style="" auto-routed-paths="false" default-line-style="default" view-location="-170,261" zoom="0.6">
         <style>
           <background-color index="1" color="#FFFFFFFF" />
           <background-color index="2" color="#FFFFFFFF" />
@@ -6626,7 +6620,7 @@
           </authors>
           <description />
           <creation-date>11/04/2024 15:58:40</creation-date>
-          <change-date>11/04/2024 22:21:39</change-date>
+          <change-date>11/04/2024 20:42:36</change-date>
           <revision-count>0</revision-count>
           <version />
         </meta>
@@ -6730,9 +6724,6 @@
             </style>
             <action locally-reentrant="false" />
           </item>
-          <item id="823c2a5a2acf4c53be3cd9efa6898c61" cid="ELEM122" type="universal-connector" creator="" creation-date="11/04/2024 22:21:12" from="6905236b914847cd8540460319c19115" to="820b755b16f649a79d3ae955e2f28893">
-            <connector end-cap="arrow" />
-          </item>
           <item id="f60364cda7804295b525e8da967d9535" cid="ELEM040" type="control-flow" creator="" creation-date="11/04/2024 16:19:43" from="77d2a106c3be454e8daf648a27fe9b7c" to="b55c7f05e24243bea9e8667bdde8ff9e" visibility="package" guard="" weight="">
             <control-flow from="77d2a106c3be454e8daf648a27fe9b7c" to="b55c7f05e24243bea9e8667bdde8ff9e" visibility="package" guard="" weight="" />
           </item>
@@ -6750,6 +6741,9 @@
           </item>
           <item id="c3387ad39ddf4380a9ffd12ea4c9492d" cid="ELEM044" type="control-flow" creator="" creation-date="11/04/2024 16:22:06" from="883d4e9403904346a40aa576d42ff501" to="b1dd7033581244e38bafff2e5419872b" visibility="package" guard="" weight="">
             <control-flow from="883d4e9403904346a40aa576d42ff501" to="b1dd7033581244e38bafff2e5419872b" visibility="package" guard="" weight="" />
+          </item>
+          <item id="d5fba181e2f74eeb81aa59d0378872c8" cid="ELEM085" type="universal-connector" creator="" creation-date="11/04/2024 20:42:30" from="7e20031205b54ec2bd57a3eef7e52ad2" to="ccc7c8425b704d6183a5a699c7ae8c17">
+            <connector end-cap="arrow" />
           </item>
           <item id="36540d0dcd1e4208ab5b2a853ab9c417" cid="ACT026" type="action" name="Remove Item From Database" creator="" creation-date="11/04/2024 16:22:21" visibility="undefined">
             <action locally-reentrant="false" />
@@ -6811,6 +6805,9 @@
           <item id="fc068d6ef9484427977319b6b14633e8" cid="ACT018" type="action" name="Save New Item To Database" creator="" creation-date="11/04/2024 16:17:08" visibility="undefined">
             <action locally-reentrant="false" />
           </item>
+          <item id="af4a4e14a139441dba416286d9b189d3" cid="ELEM026" type="control-flow" name="NO" creator="" creation-date="11/04/2024 16:08:27" from="2b6e18cfdb9241f9aa1ba0e845df44f1" to="7e20031205b54ec2bd57a3eef7e52ad2" visibility="package" guard="" weight="">
+            <control-flow from="2b6e18cfdb9241f9aa1ba0e845df44f1" to="7e20031205b54ec2bd57a3eef7e52ad2" visibility="package" guard="" weight="" />
+          </item>
           <item id="32896c5f5ac14ae095fa1fe72284e6c9" cid="ELEM033" type="control-flow" creator="" creation-date="11/04/2024 16:15:33" from="cb801918995b4e8289e10e77665c382f" to="2608b9b0e0ef468d808a59ca5465b408" visibility="package" guard="" weight="">
             <control-flow from="cb801918995b4e8289e10e77665c382f" to="2608b9b0e0ef468d808a59ca5465b408" visibility="package" guard="" weight="" />
           </item>
@@ -6839,6 +6836,9 @@
           </item>
           <item id="3639f5a8f5014a70bd363ff2bb75188b" cid="ELEM038" type="control-flow" creator="" creation-date="11/04/2024 16:17:25" from="fc068d6ef9484427977319b6b14633e8" to="dc82a965facb415d889523ac584a3033" visibility="package" guard="" weight="">
             <control-flow from="fc068d6ef9484427977319b6b14633e8" to="dc82a965facb415d889523ac584a3033" visibility="package" guard="" weight="" />
+          </item>
+          <item id="7e20031205b54ec2bd57a3eef7e52ad2" cid="ACT011" type="action" name="Display Authentication Error" creator="" creation-date="11/04/2024 16:08:27" visibility="undefined">
+            <action locally-reentrant="false" />
           </item>
           <item id="ddeb0afc368d45d4ba61646f59a1adc3" cid="ELEM029" type="control-flow" creator="" creation-date="11/04/2024 16:11:47" from="6f03e6fb2e264324801d1ff2fffa4d1c" to="cb801918995b4e8289e10e77665c382f" visibility="package" guard="" weight="">
             <control-flow from="6f03e6fb2e264324801d1ff2fffa4d1c" to="cb801918995b4e8289e10e77665c382f" visibility="package" guard="" weight="" />
@@ -6880,6 +6880,18 @@
               </points>
             </layout>
             <relation from="820b755b16f649a79d3ae955e2f28893" from-iid="08083e0f96df47bfbb1a6fb82ac55bfb" to="2b6e18cfdb9241f9aa1ba0e845df44f1" to-iid="b862c1da9bcb42ac91988be992b99083" />
+          </item>
+          <item id="7e20031205b54ec2bd57a3eef7e52ad2" iid="391cf0498657403793165afc218515a1" creation-date="11/04/2024 16:08:27" order-index="6" type="entity">
+            <layout ax="1348" ay="345" awidth="221" aheight="50" x="1348" y="345" width="100" height="50" expanded="1348,345,221,50" collapsed="0,0,0,0" />
+          </item>
+          <item id="af4a4e14a139441dba416286d9b189d3" iid="7b7a6f4b7dd449aba4f6023f711ba180" creation-date="11/04/2024 16:08:27" order-index="7" type="relation">
+            <layout line-style="oblique" lock-start-point="true" lock-to-fields="false" auto-path="" x1="704" y1="370" x2="1348" y2="370" start-border-pos="0.375" end-border-pos="0.875" start-local-pos="39.5" name-position="0,20">
+              <points>
+                <point x="704" y="370" />
+                <point x="1348" y="370" />
+              </points>
+            </layout>
+            <relation from="2b6e18cfdb9241f9aa1ba0e845df44f1" from-iid="b862c1da9bcb42ac91988be992b99083" to="7e20031205b54ec2bd57a3eef7e52ad2" to-iid="391cf0498657403793165afc218515a1" />
           </item>
           <item id="1e378c4a06494350896495099b5e42c9" iid="114ca2f9e1554f42bfddd35ab929da55" creation-date="11/04/2024 16:09:11" order-index="9" type="entity">
             <layout ax="266" ay="345" awidth="198" aheight="50" x="266" y="345" width="100" height="50" expanded="266,345,198,50" collapsed="0,0,0,0" />
@@ -7119,32 +7131,19 @@
             </layout>
             <relation from="dc82a965facb415d889523ac584a3033" from-iid="4160e0b0f3004b2a8c7ba61f329e16e5" to="ccc7c8425b704d6183a5a699c7ae8c17" to-iid="ddd4e7a59e8b4661a820fe6c5711330f" />
           </item>
-          <item id="6905236b914847cd8540460319c19115" iid="fe0b5701086241f2ab58217d554c1382" creation-date="11/04/2024 20:40:20" order-index="0" type="entity">
-            <layout ax="952" ay="463" awidth="229" aheight="50" x="952" y="463" width="100" height="50" expanded="952,463,229,50" collapsed="0,0,0,0" />
-          </item>
-          <item id="3afe281f58504136b087f702b51f50fb" iid="a042f038ca2344988182d6750b3d0726" creation-date="11/04/2024 20:42:26" order-index="1" type="relation">
-            <layout line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="704" y1="370" x2="1066" y2="463" start-border-pos="0.375" end-border-pos="0.12445414811372757" start-local-pos="30" end-local-pos="114" name-position="-38,32">
+          <item id="d5fba181e2f74eeb81aa59d0378872c8" iid="8ac7d55258bd4675b1cb99e36aa4aa08" creation-date="11/04/2024 20:42:30" order-index="64" type="relation">
+            <layout line-style="oblique" lock-to-fields="false" auto-path="" x1="1458" y1="395" x2="377" y2="2240" start-border-pos="0.6255352313701923" end-border-pos="0.36868408203125" name-position="0,20">
               <points>
-                <point x="704" y="370" />
-                <point x="1066" y="373" />
-                <point x="1066" y="463" />
+                <point x="1458" y="395" />
+                <point x="1460" y="2228" />
+                <point x="377" y="2240" />
               </points>
             </layout>
-            <relation from="2b6e18cfdb9241f9aa1ba0e845df44f1" from-iid="b862c1da9bcb42ac91988be992b99083" to="6905236b914847cd8540460319c19115" to-iid="fe0b5701086241f2ab58217d554c1382" />
-          </item>
-          <item id="823c2a5a2acf4c53be3cd9efa6898c61" iid="c2366a4799d248faae8c1044dd513241" creation-date="11/04/2024 22:21:12" order-index="65" type="relation">
-            <layout line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="1181" y1="488" x2="774" y2="240" start-border-pos="0.875" end-border-pos="0.3775" start-local-pos="25" end-local-pos="25.5" name-position="0,20" name-width="230">
-              <points>
-                <point x="1181" y="488" />
-                <point x="1182" y="244" />
-                <point x="774" y="240" />
-              </points>
-            </layout>
-            <relation from="6905236b914847cd8540460319c19115" from-iid="fe0b5701086241f2ab58217d554c1382" to="820b755b16f649a79d3ae955e2f28893" to-iid="08083e0f96df47bfbb1a6fb82ac55bfb" />
+            <relation from="7e20031205b54ec2bd57a3eef7e52ad2" from-iid="391cf0498657403793165afc218515a1" to="ccc7c8425b704d6183a5a699c7ae8c17" to-iid="ddd4e7a59e8b4661a820fe6c5711330f" />
           </item>
         </layer>
       </diagram>
-      <diagram type="uml-activity" id="be77d245719b41ac854546420660c380" name="View Notifications" order-index="1" overview-order-index="10" thumbnail-color="#FF0000FF" uid="" name-style="" auto-routed-paths="false" default-line-style="default" view-location="-116,324" zoom="0.7">
+      <diagram type="uml-activity" id="be77d245719b41ac854546420660c380" name="View Notifications" order-index="1" overview-order-index="10" thumbnail-color="#FF0000FF" uid="" name-style="" auto-routed-paths="false" default-line-style="default" view-location="0,344" zoom="0.8">
         <style>
           <background-color index="1" color="#FFFFFFFF" />
           <background-color index="2" color="#FFFFFFFF" />
@@ -7750,7 +7749,7 @@
           </item>
         </layer>
       </diagram>
-      <diagram type="uml-activity" id="332fb37d0a4f4cd3a36a6cba08b24464" name="Admin View" order-index="2" overview-order-index="9" thumbnail-color="#FF0000FF" uid="" name-style="" show-fields="true" auto-routed-paths="false" default-line-style="default" show-frame="false" view-location="-312,0" zoom="0.8">
+      <diagram type="uml-activity" id="332fb37d0a4f4cd3a36a6cba08b24464" name="Admin View" order-index="2" overview-order-index="9" thumbnail-color="#FF0000FF" uid="" name-style="" show-fields="true" auto-routed-paths="false" default-line-style="default" show-frame="false" view-location="-390,-202" zoom="0.8">
         <style>
           <background-color index="1" color="#FFFFFFFF" />
           <background-color index="2" color="#FFFFFFFF" />
