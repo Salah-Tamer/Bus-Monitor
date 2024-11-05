@@ -1,1 +1,3 @@
-# Bus-Monitor
+# Bus Monitor
+
+This application is designed to track student attendance by recording their boarding and departure times from the bus. Parents can monitor their child's attendance directly through the application. The supervisor is responsible for managing these records and notifying parents of any positive or negative behaviors observed during the trip. Additionally, the driver can inform parents of any unexpected delays. 
