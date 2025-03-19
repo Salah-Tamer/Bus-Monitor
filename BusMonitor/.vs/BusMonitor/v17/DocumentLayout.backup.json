@@ -1,0 +1,211 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\ma906\\source\\repos\\BusMonitor\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{073C32CB-6939-4735-9F49-6C9265733338}|BusMonitor\\BusMonitor.csproj|c:\\users\\ma906\\source\\repos\\busmonitor\\busmonitor\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{073C32CB-6939-4735-9F49-6C9265733338}|BusMonitor\\BusMonitor.csproj|solutionrelative:busmonitor\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{073C32CB-6939-4735-9F49-6C9265733338}|BusMonitor\\BusMonitor.csproj|c:\\users\\ma906\\source\\repos\\busmonitor\\busmonitor\\dataseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{073C32CB-6939-4735-9F49-6C9265733338}|BusMonitor\\BusMonitor.csproj|solutionrelative:busmonitor\\dataseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{073C32CB-6939-4735-9F49-6C9265733338}|BusMonitor\\BusMonitor.csproj|c:\\users\\ma906\\source\\repos\\busmonitor\\busmonitor\\models\\studenttrip.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{073C32CB-6939-4735-9F49-6C9265733338}|BusMonitor\\BusMonitor.csproj|solutionrelative:busmonitor\\models\\studenttrip.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{073C32CB-6939-4735-9F49-6C9265733338}|BusMonitor\\BusMonitor.csproj|c:\\users\\ma906\\source\\repos\\busmonitor\\busmonitor\\models\\bus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{073C32CB-6939-4735-9F49-6C9265733338}|BusMonitor\\BusMonitor.csproj|solutionrelative:busmonitor\\models\\bus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{073C32CB-6939-4735-9F49-6C9265733338}|BusMonitor\\BusMonitor.csproj|c:\\users\\ma906\\source\\repos\\busmonitor\\busmonitor\\models\\busmonitordbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{073C32CB-6939-4735-9F49-6C9265733338}|BusMonitor\\BusMonitor.csproj|solutionrelative:busmonitor\\models\\busmonitordbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{073C32CB-6939-4735-9F49-6C9265733338}|BusMonitor\\BusMonitor.csproj|c:\\users\\ma906\\source\\repos\\busmonitor\\busmonitor\\models\\trip.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{073C32CB-6939-4735-9F49-6C9265733338}|BusMonitor\\BusMonitor.csproj|solutionrelative:busmonitor\\models\\trip.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{073C32CB-6939-4735-9F49-6C9265733338}|BusMonitor\\BusMonitor.csproj|c:\\users\\ma906\\source\\repos\\busmonitor\\busmonitor\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{073C32CB-6939-4735-9F49-6C9265733338}|BusMonitor\\BusMonitor.csproj|solutionrelative:busmonitor\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{073C32CB-6939-4735-9F49-6C9265733338}|BusMonitor\\BusMonitor.csproj|c:\\users\\ma906\\source\\repos\\busmonitor\\busmonitor\\models\\status.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{073C32CB-6939-4735-9F49-6C9265733338}|BusMonitor\\BusMonitor.csproj|solutionrelative:busmonitor\\models\\status.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{073C32CB-6939-4735-9F49-6C9265733338}|BusMonitor\\BusMonitor.csproj|c:\\users\\ma906\\source\\repos\\busmonitor\\busmonitor\\models\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{073C32CB-6939-4735-9F49-6C9265733338}|BusMonitor\\BusMonitor.csproj|solutionrelative:busmonitor\\models\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{073C32CB-6939-4735-9F49-6C9265733338}|BusMonitor\\BusMonitor.csproj|c:\\users\\ma906\\source\\repos\\busmonitor\\busmonitor\\models\\route.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{073C32CB-6939-4735-9F49-6C9265733338}|BusMonitor\\BusMonitor.csproj|solutionrelative:busmonitor\\models\\route.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{073C32CB-6939-4735-9F49-6C9265733338}|BusMonitor\\BusMonitor.csproj|c:\\users\\ma906\\source\\repos\\busmonitor\\busmonitor\\models\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{073C32CB-6939-4735-9F49-6C9265733338}|BusMonitor\\BusMonitor.csproj|solutionrelative:busmonitor\\models\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DataSeeder.cs",
+              "DocumentMoniker": "C:\\Users\\ma906\\source\\repos\\BusMonitor\\BusMonitor\\DataSeeder.cs",
+              "RelativeDocumentMoniker": "BusMonitor\\DataSeeder.cs",
+              "ToolTip": "C:\\Users\\ma906\\source\\repos\\BusMonitor\\BusMonitor\\DataSeeder.cs*",
+              "RelativeToolTip": "BusMonitor\\DataSeeder.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAKwAAABTAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-19T05:55:38.201Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\ma906\\source\\repos\\BusMonitor\\BusMonitor\\Program.cs",
+              "RelativeDocumentMoniker": "BusMonitor\\Program.cs",
+              "ToolTip": "C:\\Users\\ma906\\source\\repos\\BusMonitor\\BusMonitor\\Program.cs*",
+              "RelativeToolTip": "BusMonitor\\Program.cs*",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAIwDUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-18T23:54:10.989Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "BusMonitorDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\ma906\\source\\repos\\BusMonitor\\BusMonitor\\Models\\BusMonitorDbContext.cs",
+              "RelativeDocumentMoniker": "BusMonitor\\Models\\BusMonitorDbContext.cs",
+              "ToolTip": "C:\\Users\\ma906\\source\\repos\\BusMonitor\\BusMonitor\\Models\\BusMonitorDbContext.cs",
+              "RelativeToolTip": "BusMonitor\\Models\\BusMonitorDbContext.cs",
+              "ViewState": "AgIAADIAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-18T23:49:22.256Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Role.cs",
+              "DocumentMoniker": "C:\\Users\\ma906\\source\\repos\\BusMonitor\\BusMonitor\\Models\\Role.cs",
+              "RelativeDocumentMoniker": "BusMonitor\\Models\\Role.cs",
+              "ToolTip": "C:\\Users\\ma906\\source\\repos\\BusMonitor\\BusMonitor\\Models\\Role.cs",
+              "RelativeToolTip": "BusMonitor\\Models\\Role.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-18T23:15:39.506Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Status.cs",
+              "DocumentMoniker": "C:\\Users\\ma906\\source\\repos\\BusMonitor\\BusMonitor\\Models\\Status.cs",
+              "RelativeDocumentMoniker": "BusMonitor\\Models\\Status.cs",
+              "ToolTip": "C:\\Users\\ma906\\source\\repos\\BusMonitor\\BusMonitor\\Models\\Status.cs",
+              "RelativeToolTip": "BusMonitor\\Models\\Status.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-18T23:14:53.473Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Bus.cs",
+              "DocumentMoniker": "C:\\Users\\ma906\\source\\repos\\BusMonitor\\BusMonitor\\Models\\Bus.cs",
+              "RelativeDocumentMoniker": "BusMonitor\\Models\\Bus.cs",
+              "ToolTip": "C:\\Users\\ma906\\source\\repos\\BusMonitor\\BusMonitor\\Models\\Bus.cs",
+              "RelativeToolTip": "BusMonitor\\Models\\Bus.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-18T23:02:45.293Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "StudentTrip.cs",
+              "DocumentMoniker": "C:\\Users\\ma906\\source\\repos\\BusMonitor\\BusMonitor\\Models\\StudentTrip.cs",
+              "RelativeDocumentMoniker": "BusMonitor\\Models\\StudentTrip.cs",
+              "ToolTip": "C:\\Users\\ma906\\source\\repos\\BusMonitor\\BusMonitor\\Models\\StudentTrip.cs",
+              "RelativeToolTip": "BusMonitor\\Models\\StudentTrip.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAQwBEAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-18T22:59:38.265Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Route.cs",
+              "DocumentMoniker": "C:\\Users\\ma906\\source\\repos\\BusMonitor\\BusMonitor\\Models\\Route.cs",
+              "RelativeDocumentMoniker": "BusMonitor\\Models\\Route.cs",
+              "ToolTip": "C:\\Users\\ma906\\source\\repos\\BusMonitor\\BusMonitor\\Models\\Route.cs",
+              "RelativeToolTip": "BusMonitor\\Models\\Route.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-18T22:58:58.982Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\ma906\\source\\repos\\BusMonitor\\BusMonitor\\Models\\User.cs",
+              "RelativeDocumentMoniker": "BusMonitor\\Models\\User.cs",
+              "ToolTip": "C:\\Users\\ma906\\source\\repos\\BusMonitor\\BusMonitor\\Models\\User.cs",
+              "RelativeToolTip": "BusMonitor\\Models\\User.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAxwBoAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-18T22:58:15.793Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Student.cs",
+              "DocumentMoniker": "C:\\Users\\ma906\\source\\repos\\BusMonitor\\BusMonitor\\Models\\Student.cs",
+              "RelativeDocumentMoniker": "BusMonitor\\Models\\Student.cs",
+              "ToolTip": "C:\\Users\\ma906\\source\\repos\\BusMonitor\\BusMonitor\\Models\\Student.cs",
+              "RelativeToolTip": "BusMonitor\\Models\\Student.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-18T22:56:03.083Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Trip.cs",
+              "DocumentMoniker": "C:\\Users\\ma906\\source\\repos\\BusMonitor\\BusMonitor\\Models\\Trip.cs",
+              "RelativeDocumentMoniker": "BusMonitor\\Models\\Trip.cs",
+              "ToolTip": "C:\\Users\\ma906\\source\\repos\\BusMonitor\\BusMonitor\\Models\\Trip.cs",
+              "RelativeToolTip": "BusMonitor\\Models\\Trip.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAIBQwBsAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-18T22:54:40.823Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
