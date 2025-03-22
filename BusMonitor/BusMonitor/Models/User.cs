@@ -39,5 +39,24 @@ namespace BusMonitor.Models
             DrivenTrips = new HashSet<Trip>();
             CreatedTrips = new HashSet<Trip>();
         }
+
+        //public bool ValidatePassword(string password)
+        //{
+        //    using (var sha256 = System.Security.Cryptography.SHA256.Create())
+        //    {
+        //        var bytes = sha256.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+        //        var hashedPassword = Convert.ToBase64String(bytes);
+        //        return Password == hashedPassword;
+        //    }
+        //}
+
+        //public void SetPassword(string password)
+        //{
+        //    using (var sha256 = System.Security.Cryptography.SHA256.Create())
+        //    {
+        //        var bytes = sha256.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+        //        Password = Convert.ToBase64String(bytes);
+        //    }
+        //}
     }
 }
