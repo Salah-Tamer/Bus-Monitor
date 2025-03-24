@@ -14,6 +14,9 @@ namespace BusMonitor.Models
         public DbSet<Route> Routes { get; set; }
         public DbSet<Trip> Trips { get; set; }
         public DbSet<StudentTrip> StudentTrips { get; set; }
+        public DbSet<StudentReport> StudentReports { get; set; }
+        public DbSet<DelayReport> DelayReports { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -84,6 +87,63 @@ namespace BusMonitor.Models
                 .WithMany(t => t.StudentTrips)
                 .HasForeignKey(st => st.TripId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            // StudentReport relationships
+            modelBuilder.Entity<StudentReport>()
+                .HasOne(r => r.Student)
+                .WithMany(s => s.BehaviorReports)
+                .HasForeignKey(r => r.StudentId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<StudentReport>()
+                .HasOne(r => r.Trip)
+                .WithMany(t => t.BehaviorReports)
+                .HasForeignKey(r => r.TripId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<StudentReport>()
+                .HasOne(r => r.Supervisor)
+                .WithMany(u => u.BehaviorReports)
+                .HasForeignKey(r => r.SupervisorId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // DelayReport relationships
+            modelBuilder.Entity<DelayReport>()
+                .HasOne(r => r.Trip)
+                .WithMany(t => t.DelayReports)
+                .HasForeignKey(r => r.TripId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<DelayReport>()
+                .HasOne(r => r.Supervisor)
+                .WithMany(u => u.DelayReports)
+                .HasForeignKey(r => r.SupervisorId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Notification relationships
+            modelBuilder.Entity<Notification>()
+                .HasOne(n => n.Parent)
+                .WithMany(u => u.Notifications)
+                .HasForeignKey(n => n.ParentId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Notification>()
+                .HasOne(n => n.Student)
+                .WithMany(s => s.Notifications)
+                .HasForeignKey(n => n.StudentId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Notification>()
+                .HasOne(n => n.Trip)
+                .WithMany(t => t.Notifications)
+                .HasForeignKey(n => n.TripId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Add unique constraint to ensure a supervisor can only be assigned to one active trip at a time
+            modelBuilder.Entity<Trip>()
+                .HasIndex(t => new { t.SupervisorId, t.Status })
+                .IsUnique()
+                .HasFilter("[Status] = 'Active'");
         }
     }
 }

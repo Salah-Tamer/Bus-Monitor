@@ -4,6 +4,7 @@ using BusMonitor.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BusMonitor.Migrations
 {
     [DbContext(typeof(BusMonitorDbContext))]
-    partial class BusMonitorDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250324173642_AddStudentReportsAndDelayReports")]
+    partial class AddStudentReportsAndDelayReports
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -189,9 +192,6 @@ namespace BusMonitor.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("BehaviorCategory")
-                        .HasColumnType("int");
 
                     b.Property<string>("BehaviorNotes")
                         .IsRequired()

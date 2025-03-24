@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BusMonitor.Models
 {
@@ -31,6 +32,9 @@ namespace BusMonitor.Models
         public virtual ICollection<Trip> SupervisedTrips { get; set; } // For Supervisor role
         public virtual ICollection<Trip> DrivenTrips { get; set; } // For Driver role
         public virtual ICollection<Trip> CreatedTrips { get; set; } // For Admin role
+        public virtual ICollection<StudentReport> BehaviorReports { get; set; }
+        public virtual ICollection<DelayReport> DelayReports { get; set; }
+        public virtual ICollection<Notification> Notifications { get; set; }
 
         public User()
         {

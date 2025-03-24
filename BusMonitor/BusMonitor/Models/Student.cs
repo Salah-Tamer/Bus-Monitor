@@ -9,7 +9,7 @@ namespace BusMonitor.Models
         public int Id { get; set; }
 
         [Required]
-        [StringLength(100)]
+        [StringLength(50)]
         public string Name { get; set; }
 
         [StringLength(20)]
@@ -17,16 +17,21 @@ namespace BusMonitor.Models
 
         public int? Absence { get; set; }
 
+        [Required]
         [ForeignKey("Parent")]
-        public int? ParentId { get; set; }
+        public int ParentId { get; set; }
 
         // Navigation properties
         public virtual User Parent { get; set; }
         public virtual ICollection<StudentTrip> StudentTrips { get; set; }
+        public virtual ICollection<StudentReport> BehaviorReports { get; set; }
+        public virtual ICollection<Notification> Notifications { get; set; }
 
         public Student()
         {
             StudentTrips = new HashSet<StudentTrip>();
+            BehaviorReports = new HashSet<StudentReport>();
+            Notifications = new HashSet<Notification>();
         }
     }
 }

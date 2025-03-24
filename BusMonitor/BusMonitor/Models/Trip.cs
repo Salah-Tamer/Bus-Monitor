@@ -34,10 +34,16 @@ namespace BusMonitor.Models
         public virtual User Supervisor { get; set; }
         public virtual User Admin { get; set; }
         public virtual ICollection<StudentTrip> StudentTrips { get; set; }
+        public virtual ICollection<StudentReport> BehaviorReports { get; set; }
+        public virtual ICollection<DelayReport> DelayReports { get; set; }
+        public virtual ICollection<Notification> Notifications { get; set; }
 
         public Trip()
         {
             StudentTrips = new HashSet<StudentTrip>();
+            BehaviorReports = new HashSet<StudentReport>();
+            DelayReports = new HashSet<DelayReport>();
+            Notifications = new HashSet<Notification>();
         }
     }
 }

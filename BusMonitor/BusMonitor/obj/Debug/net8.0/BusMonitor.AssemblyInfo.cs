@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BusMonitor")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+afc3bdcf7459638aedfc8987c6699c5fad411364")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b4fc3ade63f8e8c9a4fd1f2372da9c1ad3560bf7")]
 [assembly: System.Reflection.AssemblyProductAttribute("BusMonitor")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BusMonitor")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
