@@ -65,4 +65,5 @@ public class PasswordHasher
     {
         user.Password = HashPassword(user.Password);
     }
+
 }
