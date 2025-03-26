@@ -16,17 +16,22 @@ namespace BusMonitor.Services
         Task<User> AuthenticateAsync(string username, string password);
         string GenerateJwtToken(User user);
         Task<User> GetUserByIdAsync(int id);
+        Task AddNewUserAsync(User user);
+        Task HashAllPasswordsInUserTableAsync();
+        Task UpdateUserPasswordAsync(int userId, string newPassword);
     }
 
     public class AuthService : IAuthService
     {
         private readonly BusMonitorDbContext _context;
         private readonly IConfiguration _configuration;
+        private readonly PasswordHasher _passwordHasher;
 
         public AuthService(BusMonitorDbContext context, IConfiguration configuration)
         {
             _context = context;
             _configuration = configuration;
+            _passwordHasher = new PasswordHasher();
         }
 
         public async Task<User> AuthenticateAsync(string username, string password)
@@ -34,8 +39,8 @@ namespace BusMonitor.Services
             var user = await _context.Users.SingleOrDefaultAsync(x => x.Username == username);
 
             // Return null if user not found or password doesn't match
-            if (user == null || user.Password != password)
-                return null;
+            //if (user == null || !_passwordHasher.VerifyPassword(user.Password, password))
+            //    return null;
 
             return user;
         }
@@ -65,5 +70,36 @@ namespace BusMonitor.Services
         {
             return await _context.Users.FindAsync(id);
         }
+
+        public async Task AddNewUserAsync(User user)
+        {
+            user.Password = _passwordHasher.HashPassword(user.Password);
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task HashAllPasswordsInUserTableAsync()
+        {
+            var users = await _context.Users.ToListAsync();
+            foreach (var user in users)
+            {
+                if (!user.Password.StartsWith("hashed:"))
+                {
+                    user.Password = "hashed:" + _passwordHasher.HashPassword(user.Password);
+                }
+            }
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateUserPasswordAsync(int userId, string newPassword)
+        {
+            var user = await _context.Users.FindAsync(userId);
+            if (user != null)
+            {
+                user.Password = _passwordHasher.HashPassword(newPassword);
+                _context.Users.Update(user);
+                await _context.SaveChangesAsync();
+            }
+        }
     }
-} 
+}
