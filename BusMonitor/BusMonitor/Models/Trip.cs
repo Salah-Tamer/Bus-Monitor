@@ -27,6 +27,10 @@ namespace BusMonitor.Models
         [ForeignKey("Admin")]
         public int? AdminId { get; set; }
 
+        // New properties for tracking arrival and departure times
+        public DateTime? ArrivalTime { get; set; }
+        public DateTime? DepartureTime { get; set; }
+
         // Navigation properties
         public virtual Bus Bus { get; set; }
         public virtual Route Route { get; set; }
