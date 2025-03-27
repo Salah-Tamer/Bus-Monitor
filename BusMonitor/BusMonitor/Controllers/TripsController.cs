@@ -48,7 +48,7 @@ namespace BusMonitor.Controllers
 
         // PUT: api/Trips/5
         [HttpPut("{id}")]
-        [Authorize(Roles = "Supervisor,Driver")] // Only Supervisors and Drivers can update
+        [Authorize(Roles = "Admin,Supervisor,Driver")] // Only Supervisors and Drivers can update
         public async Task<IActionResult> PutTrip(int id, TripDTO tripDto)
         {
             if (id != tripDto.Id)
