@@ -6,6 +6,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.OpenApi.Models;
 using BusMonitor.Services;
+using BusMonitor.Mappings;
+using Microsoft.AspNetCore.Identity;
 
 namespace BusMonitor
 {
@@ -71,7 +73,7 @@ namespace BusMonitor
             builder.Services.AddScoped<IAuthService, AuthService>();
             builder.Services.AddScoped<INotificationService, NotificationService>();
             builder.Services.AddSingleton<PasswordHasher>();
-            builder.Services.AddAutoMapper(typeof(Program).Assembly);
+            builder.Services.AddAutoMapper(typeof(MappingProfile)); // Register AutoMapper
 
             var app = builder.Build();
 
