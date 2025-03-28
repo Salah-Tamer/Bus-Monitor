@@ -4,6 +4,7 @@ using BusMonitor.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BusMonitor.Migrations
 {
     [DbContext(typeof(BusMonitorDbContext))]
-    partial class BusMonitorDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250327215148_AddArrivalAndDepartureTimesToTrips")]
+    partial class AddArrivalAndDepartureTimesToTrips
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -258,14 +261,8 @@ namespace BusMonitor.Migrations
                     b.Property<int?>("AdminId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("ArrivalTime")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("BusId")
                         .HasColumnType("int");
-
-                    b.Property<DateTime?>("DepartureTime")
-                        .HasColumnType("datetime2");
 
                     b.Property<int?>("DriverId")
                         .HasColumnType("int");
