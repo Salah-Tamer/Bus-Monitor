@@ -15,6 +15,10 @@ namespace BusMonitor.DTOs
         public int? AdminId { get; set; }
         public string AdminName { get; set; }
         public ICollection<StudentDTO> Students { get; set; }
+
+        // New properties for tracking arrival and departure times
+        public DateTime? ArrivalTime { get; set; }
+        public DateTime? DepartureTime { get; set; }
     }
 
     public class CreateTripDTO

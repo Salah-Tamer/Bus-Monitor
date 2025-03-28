@@ -114,22 +114,32 @@ namespace BusMonitor.Controllers
         }
 
         // POST: api/Users
+        // POST: api/Users
         [HttpPost]
         [Authorize(Roles = "Admin")] // Only Admins can create users
         public async Task<ActionResult<UserDTO>> PostUser(UserDTO userDto)
         {
             var user = _mapper.Map<User>(userDto);
-            
+
             // Ensure password is set directly without hashing
             if (!string.IsNullOrEmpty(userDto.Password))
             {
                 user.Password = userDto.Password;
             }
-            
-            var createdUser = await _context.Users.AddAsync(user);
-            await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetUser), new { id = createdUser.Entity.Id }, _mapper.Map<UserDTO>(createdUser.Entity));
+
+            // Use AuthService to add the new user and hash the password
+            var authService = HttpContext.RequestServices.GetService<IAuthService>();
+            if (authService == null)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "AuthService not available.");
+            }
+
+            await authService.AddNewUserAsync(user);
+
+            return CreatedAtAction(nameof(GetUser), new { id = user.Id }, _mapper.Map<UserDTO>(user));
         }
+
+
 
         // DELETE: api/Users/5
         [HttpDelete("{id}")]

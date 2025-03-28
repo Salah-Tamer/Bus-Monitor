@@ -6,6 +6,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.OpenApi.Models;
 using BusMonitor.Services;
+using BusMonitor.Mappings;
+using Microsoft.AspNetCore.Identity;
 
 namespace BusMonitor
 {
@@ -20,7 +22,7 @@ namespace BusMonitor
             builder.Services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BusMonitor API", Version = "v1" });
-                
+
                 // Add JWT authentication to Swagger
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
@@ -30,7 +32,7 @@ namespace BusMonitor
                     Type = SecuritySchemeType.ApiKey,
                     Scheme = "Bearer"
                 });
-                
+
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
                     {
@@ -70,11 +72,18 @@ namespace BusMonitor
 
             builder.Services.AddScoped<IAuthService, AuthService>();
             builder.Services.AddScoped<INotificationService, NotificationService>();
-            builder.Services.AddAutoMapper(typeof(Program).Assembly);
+            builder.Services.AddSingleton<PasswordHasher>();
+            builder.Services.AddAutoMapper(typeof(MappingProfile)); // Register AutoMapper
+<<<<<<< HEAD
+            builder.Services.AddHostedService<TripCreationService>(); // Register the background service
+
+
+=======
+>>>>>>> 263c0a1 (feat: added password hasher and student tracking)
 
             var app = builder.Build();
 
-            // Seed the database
+            // Seed the database and hash passwords
             using (var scope = app.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
@@ -83,6 +92,9 @@ namespace BusMonitor
                     var context = services.GetRequiredService<BusMonitorDbContext>();
                     context.Database.Migrate(); // Apply any pending migrations
                     DataSeeder.SeedData(context); // Seed the database
+
+                    // Hash all existing passwords
+                    var passwordHasher = services.GetRequiredService<PasswordHasher>();
                 }
                 catch (Exception ex)
                 {
@@ -106,3 +118,4 @@ namespace BusMonitor
         }
     }
 }
+
