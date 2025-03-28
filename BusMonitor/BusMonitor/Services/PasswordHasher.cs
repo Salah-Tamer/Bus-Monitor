@@ -44,23 +44,6 @@ public class PasswordHasher
 
         return storedHash == providedHash;
     }
-
-    public void HashAllPasswordsInUserTable(BusMonitorDbContext context)
-    {
-        var users = context.Users.ToList();
-        foreach (var user in users)
-        {
-            // Check if the password is already hashed
-            if (!user.Password.Contains('.'))
-            {
-                user.Password = HashPassword(user.Password);
-            }
-        }
-        context.SaveChanges();
-    }
-
-
-
     public void HashNewUserPassword(User user)
     {
         user.Password = HashPassword(user.Password);

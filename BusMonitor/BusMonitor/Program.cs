@@ -89,7 +89,6 @@ namespace BusMonitor
 
                     // Hash all existing passwords
                     var passwordHasher = services.GetRequiredService<PasswordHasher>();
-                    passwordHasher.HashAllPasswordsInUserTable(context);
                 }
                 catch (Exception ex)
                 {
