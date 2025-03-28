@@ -17,7 +17,6 @@ namespace BusMonitor.Services
         string GenerateJwtToken(User user);
         Task<User?> GetUserByIdAsync(int id);
         Task AddNewUserAsync(User user);
-        Task HashAllPasswordsInUserTableAsync();
         Task UpdateUserPasswordAsync(int userId, string newPassword);
     }
 
@@ -81,20 +80,6 @@ namespace BusMonitor.Services
         {
             _passwordHasher.HashNewUserPassword(user);
             _context.Users.Add(user);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task HashAllPasswordsInUserTableAsync()
-        {
-            var users = await _context.Users.ToListAsync();
-            foreach (var user in users)
-            {
-                // Check if the password is already hashed
-                if (!user.Password.Contains('.'))
-                {
-                    user.Password = _passwordHasher.HashPassword(user.Password);
-                }
-            }
             await _context.SaveChangesAsync();
         }
 

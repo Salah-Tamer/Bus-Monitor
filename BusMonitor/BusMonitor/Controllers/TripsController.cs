@@ -28,7 +28,15 @@ namespace BusMonitor.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TripDTO>>> GetTrips()
         {
-            var trips = await _context.Trips.ToListAsync();
+            var trips = await _context.Trips
+               .Include(t => t.Bus)
+               .Include(t => t.Route)
+               .Include(t => t.Driver)
+               .Include(t => t.Supervisor)
+               .Include(t => t.Admin)
+               .Include(t => t.StudentTrips)
+                   .ThenInclude(st => st.Student)
+               .ToListAsync();
             return Ok(_mapper.Map<IEnumerable<TripDTO>>(trips));
         }
 
@@ -36,7 +44,15 @@ namespace BusMonitor.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<TripDTO>> GetTrip(int id)
         {
-            var trip = await _context.Trips.FindAsync(id);
+            var trip = await _context.Trips
+               .Include(t => t.Bus)
+               .Include(t => t.Route)
+               .Include(t => t.Driver)
+               .Include(t => t.Supervisor)
+               .Include(t => t.Admin)
+               .Include(t => t.StudentTrips)
+                   .ThenInclude(st => st.Student)
+               .FirstOrDefaultAsync(t => t.Id == id);
 
             if (trip == null)
             {
@@ -48,24 +64,35 @@ namespace BusMonitor.Controllers
 
         // PUT: api/Trips/5
         [HttpPut("{id}")]
-        [Authorize(Roles = "Admin,Supervisor,Driver")] // Only Supervisors and Drivers can update
-        public async Task<IActionResult> PutTrip(int id, TripDTO tripDto)
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> UpdateTrip(int id, UpdateTripDTO tripDto)
         {
-            if (id != tripDto.Id)
-            {
-                return BadRequest();
-            }
-
             var trip = await _context.Trips.FindAsync(id);
             if (trip == null)
             {
                 return NotFound();
             }
 
-            // Update trip properties
-            _mapper.Map(tripDto, trip);
+            // Check if the supervisor is already assigned to an active trip (excluding the current trip)
+            if (tripDto.SupervisorId.HasValue && tripDto.Status == "Active")
+            {
+                var existingActiveTrip = await _context.Trips
+                    .AnyAsync(t => t.SupervisorId == tripDto.SupervisorId &&
+                                 t.Status.ToString() == "Active" &&
+                                 t.Id != id);
 
-            _context.Entry(trip).State = EntityState.Modified;
+                if (existingActiveTrip)
+                {
+                    return BadRequest("The supervisor is already assigned to an active trip");
+                }
+            }
+
+            // Update trip properties
+            trip.BusId = tripDto.BusId;
+            trip.RouteId = tripDto.RouteId;
+            trip.DriverId = tripDto.DriverId;
+            trip.SupervisorId = tripDto.SupervisorId;
+            trip.Status = Enum.Parse<Status>(tripDto.Status);
 
             try
             {
@@ -91,11 +118,33 @@ namespace BusMonitor.Controllers
         [Authorize(Roles = "Admin")] // Only Admins can Create trips
         public async Task<ActionResult<TripDTO>> PostTrip(TripDTO tripDto)
         {
-            var trip = _mapper.Map<Trip>(tripDto);
+            var adminId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+            if (tripDto.SupervisorId.HasValue)
+            {
+                var existingActiveTrip = await _context.Trips
+                                    .AnyAsync(t => t.SupervisorId == tripDto.SupervisorId && t.Status.ToString() == Status.Active.ToString());
+
+                if (existingActiveTrip)
+                {
+                    return BadRequest("The supervisor is already assigned to an active trip");
+                }
+            }
+                var trip = _mapper.Map<Trip>(tripDto);
+            trip.AdminId = adminId;
+            trip.Status = Status.Planned;
+
             _context.Trips.Add(trip);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetTrip), new { id = trip.Id }, _mapper.Map<TripDTO>(trip));
+            var createdTrip = await _context.Trips
+                .Include(t => t.Bus)
+                .Include(t => t.Route)
+                .Include(t => t.Driver)
+                .Include(t => t.Supervisor)
+                .Include(t => t.Admin)
+                .FirstOrDefaultAsync(t => t.Id == trip.Id);
+
+            return CreatedAtAction(nameof(GetTrip), new { id = trip.Id }, _mapper.Map<TripDTO>(createdTrip));
         }
 
         // DELETE: api/Trips/5
