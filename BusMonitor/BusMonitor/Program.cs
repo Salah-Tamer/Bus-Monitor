@@ -70,7 +70,11 @@ namespace BusMonitor
 
             builder.Services.AddScoped<IAuthService, AuthService>();
             builder.Services.AddScoped<INotificationService, NotificationService>();
-            builder.Services.AddAutoMapper(typeof(Program).Assembly);
+            builder.Services.AddSingleton<PasswordHasher>();
+            builder.Services.AddAutoMapper(typeof(MappingProfile)); // Register AutoMapper
+            builder.Services.AddHostedService<TripCreationService>(); // Register the background service
+
+
 
             var app = builder.Build();
 
