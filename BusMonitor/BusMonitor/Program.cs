@@ -74,12 +74,8 @@ namespace BusMonitor
             builder.Services.AddScoped<INotificationService, NotificationService>();
             builder.Services.AddSingleton<PasswordHasher>();
             builder.Services.AddAutoMapper(typeof(MappingProfile)); // Register AutoMapper
-<<<<<<< HEAD
             builder.Services.AddHostedService<TripCreationService>(); // Register the background service
 
-
-=======
->>>>>>> 263c0a1 (feat: added password hasher and student tracking)
 
             var app = builder.Build();
 
