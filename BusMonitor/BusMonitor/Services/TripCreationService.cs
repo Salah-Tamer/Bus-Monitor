@@ -42,7 +42,7 @@ namespace BusMonitor.Services
 
                 try
                 {
-                    // Get supervisors and drivers from the database
+                    // Fetch all required data
                     var supervisors = await context.Users.Where(u => u.Role == Role.Supervisor).ToListAsync();
                     var drivers = await context.Users.Where(u => u.Role == Role.Driver).ToListAsync();
                     var buses = await context.Buses.ToListAsync();
@@ -54,6 +54,14 @@ namespace BusMonitor.Services
                         return;
                     }
 
+                    // Pre-fetch existing trips for today
+                    var existingTrips = await context.Trips
+                        .Where(t => t.DepartureTime.HasValue && t.DepartureTime.Value.Date == DateTime.UtcNow.Date)
+                        .Select(t => new { t.BusId, t.RouteId, t.DriverId, t.SupervisorId })
+                        .ToListAsync();
+
+                    int duplicatesSkipped = 0;
+
                     foreach (var supervisor in supervisors)
                     {
                         foreach (var driver in drivers)
@@ -62,19 +70,15 @@ namespace BusMonitor.Services
                             {
                                 foreach (var route in routes)
                                 {
-                                    // Check for duplicate trips for the same day
-                                    var existingTrip = await context.Trips
-                                        .Where(t => t.BusId == bus.Id && t.RouteId == route.Id && t.DriverId == driver.Id && t.SupervisorId == supervisor.Id)
-                                        .Where(t => t.DepartureTime.HasValue && t.DepartureTime.Value.Date == DateTime.Now.Date)
-                                        .FirstOrDefaultAsync();
+                                    // Check against in-memory list
+                                    bool isDuplicate = existingTrips.Any(t =>
+                                        t.BusId == bus.Id &&
+                                        t.RouteId == route.Id &&
+                                        t.DriverId == driver.Id &&
+                                        t.SupervisorId == supervisor.Id);
 
-                                    if (existingTrip != null)
-                                    {
-                                        _logger.LogWarning($"Duplicate trip found for BusId: {bus.Id}, RouteId: {route.Id}, DriverId: {driver.Id}, SupervisorId: {supervisor.Id}.");
-                                        continue;
-                                    }
 
-                                    // Define the trip details
+                                    // Create new trip
                                     var tripDto = new TripDTO
                                     {
                                         Status = "Planned",
@@ -82,14 +86,12 @@ namespace BusMonitor.Services
                                         RouteId = route.Id,
                                         DriverId = driver.Id,
                                         SupervisorId = supervisor.Id,
-                                        AdminId = 1, // Assuming AdminId is 1
-                                        ArrivalTime = DateTime.Now.AddHours(1),
-                                        DepartureTime = DateTime.Now
+                                        AdminId = 1,
+                                        ArrivalTime = DateTime.UtcNow.AddHours(1),
+                                        DepartureTime = DateTime.UtcNow
                                     };
 
-                                    var trip = _mapper.Map<Trip>(tripDto);
-
-                                    context.Trips.Add(trip);
+                                    context.Trips.Add(_mapper.Map<Trip>(tripDto));
                                 }
                             }
                         }
