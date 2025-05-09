@@ -65,7 +65,7 @@ namespace BusMonitor.Controllers
 
         // PUT: api/Users/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(int id, UserDTO userDto)
+        public async Task<IActionResult> PutUser(int id, CreateUpdateUserDTO userDto)
         {
             // Check if user is updating their own profile or is an admin
             var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
@@ -129,7 +129,7 @@ namespace BusMonitor.Controllers
         // POST: api/Users
         [HttpPost]
         [Authorize(Roles = "Admin")] // Only Admins can create users
-        public async Task<ActionResult<UserDTO>> PostUser(UserDTO userDto)
+        public async Task<ActionResult<UserDTO>> PostUser(CreateUpdateUserDTO userDto)
         {
             var user = _mapper.Map<User>(userDto);
 
@@ -144,8 +144,6 @@ namespace BusMonitor.Controllers
 
             return CreatedAtAction(nameof(GetUser), new { id = user.Id }, _mapper.Map<UserDTO>(user));
         }
-
-
 
         // DELETE: api/Users/5
         [HttpDelete("{id}")]

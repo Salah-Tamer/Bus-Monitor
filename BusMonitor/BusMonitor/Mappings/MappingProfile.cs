@@ -13,9 +13,13 @@ namespace BusMonitor.Mappings
             CreateMap<User, UserDTO>()
                 .ForMember(dest => dest.Role, opt => opt.MapFrom(src => src.Role.ToString()));
             
-            CreateMap<UserDTO, User>()
+            CreateMap<CreateUpdateUserDTO, User>()
                 .ForMember(dest => dest.Role, opt => 
                     opt.MapFrom(src => Enum.Parse<Role>(src.Role)));
+
+            CreateMap<User, CreateUpdateUserDTO>()
+                .ForMember(dest => dest.Password, opt => opt.Ignore())
+                .ForMember(dest => dest.Role, opt => opt.MapFrom(src => src.Role.ToString()));
 
             CreateMap<Student, StudentDTO>()
                 .ForMember(dest => dest.ParentName, opt => opt.MapFrom(src => src.Parent.Name));
