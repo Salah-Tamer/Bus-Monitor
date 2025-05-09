@@ -20,9 +20,8 @@ namespace BusMonitor.Mappings
             CreateMap<Student, StudentDTO>()
                 .ForMember(dest => dest.ParentName, opt => opt.MapFrom(src => src.Parent.Name));
 
-            CreateMap<Trip, TripDTO>().ReverseMap();
             CreateMap<Student, StudentDTO>().ReverseMap();
-            // Trip mappings
+
             CreateMap<Trip, TripDTO>()
                 .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status.ToString()))
                 .ForMember(dest => dest.BusNumber, opt => opt.MapFrom(src => src.Bus.Number))
@@ -31,6 +30,10 @@ namespace BusMonitor.Mappings
                 .ForMember(dest => dest.SupervisorName, opt => opt.MapFrom(src => src.Supervisor != null ? src.Supervisor.Name : null))
                 .ForMember(dest => dest.AdminName, opt => opt.MapFrom(src => src.Admin != null ? src.Admin.Name : null))
                 .ForMember(dest => dest.Students, opt => opt.MapFrom(src => src.StudentTrips.Select(st => st.Student)));
+
+            CreateMap<TripDTO, Trip>()
+                .ForMember(dest => dest.Status, opt => opt.MapFrom(src => Enum.Parse<Status>(src.Status)))
+                .ForPath(dest => dest.Bus.Number, opt => opt.Ignore());
 
             CreateMap<CreateTripDTO, Trip>()
                 .ForMember(dest => dest.Status, opt => opt.MapFrom(src => Status.Planned));

@@ -77,11 +77,16 @@ namespace BusMonitor.Services
                                         t.DriverId == driver.Id &&
                                         t.SupervisorId == supervisor.Id);
 
-
-                                    // Create new trip
-                                    var tripDto = new TripDTO
+                                    if (isDuplicate)
                                     {
-                                        Status = "Planned",
+                                        duplicatesSkipped++;
+                                        continue;
+                                    }
+
+                                    // Create new trip directly as entity instead of using mapper
+                                    var trip = new Trip
+                                    {
+                                        Status = Status.Planned,
                                         BusId = bus.Id,
                                         RouteId = route.Id,
                                         DriverId = driver.Id,
@@ -90,8 +95,8 @@ namespace BusMonitor.Services
                                         ArrivalTime = DateTime.UtcNow.AddHours(1),
                                         DepartureTime = DateTime.UtcNow
                                     };
-
-                                    context.Trips.Add(_mapper.Map<Trip>(tripDto));
+                                    
+                                    context.Trips.Add(trip);
                                 }
                             }
                         }

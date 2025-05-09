@@ -99,9 +99,6 @@ namespace BusMonitor
                     var context = services.GetRequiredService<BusMonitorDbContext>();
                     context.Database.Migrate(); // Apply any pending migrations
                     DataSeeder.SeedData(context); // Seed the database
-
-                    // Hash all existing passwords
-                    var passwordHasher = services.GetRequiredService<PasswordHasher>();
                 }
                 catch (Exception ex)
                 {

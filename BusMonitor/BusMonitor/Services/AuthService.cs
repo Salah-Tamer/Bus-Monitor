@@ -37,38 +37,62 @@ namespace BusMonitor.Services
         {
             var user = await _context.Users.SingleOrDefaultAsync(x => x.Username == username);
 
-            // Return null if user not found or password doesn't match
-            if (user == null || !_passwordHasher.VerifyHashedPassword(user.Password, password))
+            // Return null if user not found
+            if (user == null)
                 return null;
-
+                
+            // Temporarily just compare plain text passwords
+            if (user.Password != password)
+                return null;
+                
             return user;
         }
 
         public string GenerateJwtToken(User user)
         {
-            var key = _configuration["Jwt:Key"];
-            if (string.IsNullOrEmpty(key))
+            try
             {
-                throw new ArgumentNullException(nameof(key), "JWT key is not configured.");
-            }
-
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var keyBytes = Encoding.ASCII.GetBytes(key);
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(new[]
+                var key = _configuration["Jwt:Key"];
+                if (string.IsNullOrEmpty(key))
                 {
-                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                    new Claim(ClaimTypes.Name, user.Username),
-                    new Claim(ClaimTypes.Role, user.Role.ToString())
-                }),
-                Expires = DateTime.UtcNow.AddDays(Convert.ToDouble(_configuration["Jwt:ExpiryInDays"] ?? "7")),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(keyBytes), SecurityAlgorithms.HmacSha256Signature),
-                Issuer = _configuration["Jwt:Issuer"],
-                Audience = _configuration["Jwt:Audience"]
-            };
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            return tokenHandler.WriteToken(token);
+                    throw new ArgumentNullException(nameof(key), "JWT key is not configured.");
+                }
+                
+                var issuer = _configuration["Jwt:Issuer"];
+                if (string.IsNullOrEmpty(issuer))
+                {
+                    throw new ArgumentNullException(nameof(issuer), "JWT issuer is not configured.");
+                }
+                
+                var audience = _configuration["Jwt:Audience"];
+                if (string.IsNullOrEmpty(audience))
+                {
+                    throw new ArgumentNullException(nameof(audience), "JWT audience is not configured.");
+                }
+
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var keyBytes = Encoding.ASCII.GetBytes(key);
+                var tokenDescriptor = new SecurityTokenDescriptor
+                {
+                    Subject = new ClaimsIdentity(new[]
+                    {
+                        new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                        new Claim(ClaimTypes.Name, user.Username),
+                        new Claim(ClaimTypes.Role, user.Role.ToString())
+                    }),
+                    Expires = DateTime.UtcNow.AddDays(Convert.ToDouble(_configuration["Jwt:ExpiryInDays"] ?? "7")),
+                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(keyBytes), SecurityAlgorithms.HmacSha256Signature),
+                    Issuer = issuer,
+                    Audience = audience
+                };
+                var token = tokenHandler.CreateToken(tokenDescriptor);
+                return tokenHandler.WriteToken(token);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error generating token: {ex.Message}");
+                throw;
+            }
         }
 
         public async Task<User?> GetUserByIdAsync(int id)
