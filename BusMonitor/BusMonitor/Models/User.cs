@@ -44,23 +44,18 @@ namespace BusMonitor.Models
             CreatedTrips = new HashSet<Trip>();
         }
 
-        //public bool ValidatePassword(string password)
-        //{
-        //    using (var sha256 = System.Security.Cryptography.SHA256.Create())
-        //    {
-        //        var bytes = sha256.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
-        //        var hashedPassword = Convert.ToBase64String(bytes);
-        //        return Password == hashedPassword;
-        //    }
-        //}
+        // These methods are for convenience but should prefer using the injected PasswordHasher service
+        // directly in services and controllers when possible
+        public bool ValidatePassword(string password)
+        {
+            var passwordHasher = new PasswordHasher();
+            return passwordHasher.VerifyHashedPassword(this.Password, password);
+        }
 
-        //public void SetPassword(string password)
-        //{
-        //    using (var sha256 = System.Security.Cryptography.SHA256.Create())
-        //    {
-        //        var bytes = sha256.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
-        //        Password = Convert.ToBase64String(bytes);
-        //    }
-        //}
+        public void SetPassword(string password)
+        {
+            var passwordHasher = new PasswordHasher();
+            Password = passwordHasher.HashPassword(password);
+        }
     }
 }

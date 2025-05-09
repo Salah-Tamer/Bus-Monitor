@@ -41,8 +41,8 @@ namespace BusMonitor.Services
             if (user == null)
                 return null;
                 
-            // Temporarily just compare plain text passwords
-            if (user.Password != password)
+            // Use password hasher to verify the password
+            if (!_passwordHasher.VerifyHashedPassword(user.Password, password))
                 return null;
                 
             return user;

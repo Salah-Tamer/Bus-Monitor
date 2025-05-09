@@ -15,6 +15,9 @@ namespace BusMonitor.Data
             if (context.Users.Any())
                 return;
 
+            // Create password hasher for secure password storage
+            var passwordHasher = new PasswordHasher();
+
             // Seed Users
             var users = new List<User>
             {
@@ -38,6 +41,12 @@ namespace BusMonitor.Data
                 new User { Name = "Walaa Mostafa", Username = "walaa.parent", Password = "P@ssw0rd", PhoneNumber = "0120123456", Role = Role.Parent },
                 new User { Name = "Yasser Gamal", Username = "yasser.parent", Password = "P@ssw0rd", PhoneNumber = "0130234567", Role = Role.Parent }
             };
+
+            // Hash all passwords before storing in database
+            foreach (var user in users)
+            {
+                user.Password = passwordHasher.HashPassword(user.Password);
+            }
 
             context.Users.AddRange(users);
             context.SaveChanges();

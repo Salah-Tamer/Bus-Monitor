@@ -8,6 +8,8 @@ using BusMonitor.Services;
 using AutoMapper;
 using BusMonitor.DTOs;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Http;
+using System;
 
 namespace BusMonitor.Controllers
 {
@@ -18,11 +20,15 @@ namespace BusMonitor.Controllers
     {
         private readonly BusMonitorDbContext _context;
         private readonly IMapper _mapper;
+        private readonly IAuthService _authService;
+        private readonly PasswordHasher _passwordHasher;
 
-        public UsersController(BusMonitorDbContext context, IMapper mapper)
+        public UsersController(BusMonitorDbContext context, IMapper mapper, IAuthService authService, PasswordHasher passwordHasher)
         {
             _context = context;
             _mapper = mapper;
+            _authService = authService;
+            _passwordHasher = passwordHasher;
         }
 
         // GET: api/Users
@@ -92,6 +98,13 @@ namespace BusMonitor.Controllers
                 user.Role = role;
             }
 
+            // Update password if provided
+            if (!string.IsNullOrEmpty(userDto.Password))
+            {
+                await _authService.UpdateUserPasswordAsync(id, userDto.Password);
+                return NoContent();
+            }
+
             _context.Entry(user).State = EntityState.Modified;
 
             try
@@ -114,27 +127,20 @@ namespace BusMonitor.Controllers
         }
 
         // POST: api/Users
-        // POST: api/Users
         [HttpPost]
         [Authorize(Roles = "Admin")] // Only Admins can create users
         public async Task<ActionResult<UserDTO>> PostUser(UserDTO userDto)
         {
             var user = _mapper.Map<User>(userDto);
 
-            // Ensure password is set directly without hashing
-            if (!string.IsNullOrEmpty(userDto.Password))
+            // Ensure password is set
+            if (string.IsNullOrEmpty(userDto.Password))
             {
-                user.Password = userDto.Password;
+                return BadRequest("Password is required");
             }
 
             // Use AuthService to add the new user and hash the password
-            var authService = HttpContext.RequestServices.GetService<IAuthService>();
-            if (authService == null)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, "AuthService not available.");
-            }
-
-            await authService.AddNewUserAsync(user);
+            await _authService.AddNewUserAsync(user);
 
             return CreatedAtAction(nameof(GetUser), new { id = user.Id }, _mapper.Map<UserDTO>(user));
         }
