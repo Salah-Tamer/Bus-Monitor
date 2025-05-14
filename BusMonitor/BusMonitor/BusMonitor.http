@@ -1,6 +1,0 @@
-@BusMonitor_HostAddress = http://localhost:5181
-
-GET {{BusMonitor_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

@@ -26,10 +26,15 @@ namespace BusMonitor.Mappings
 
             CreateMap<Student, StudentDTO>().ReverseMap();
 
+            CreateMap<Bus, BusDTO>();
+            
+            CreateMap<BusMonitor.Models.Route, RouteDTO>();
+
             CreateMap<Trip, TripDTO>()
                 .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status.ToString()))
                 .ForMember(dest => dest.BusNumber, opt => opt.MapFrom(src => src.Bus.Number))
                 .ForMember(dest => dest.RouteName, opt => opt.MapFrom(src => $"{src.Route.StartPoint} - {src.Route.EndPoint}"))
+                .ForMember(dest => dest.RouteStops, opt => opt.MapFrom(src => src.Route.Stops))
                 .ForMember(dest => dest.DriverName, opt => opt.MapFrom(src => src.Driver != null ? src.Driver.Name : null))
                 .ForMember(dest => dest.SupervisorName, opt => opt.MapFrom(src => src.Supervisor != null ? src.Supervisor.Name : null))
                 .ForMember(dest => dest.AdminName, opt => opt.MapFrom(src => src.Admin != null ? src.Admin.Name : null))

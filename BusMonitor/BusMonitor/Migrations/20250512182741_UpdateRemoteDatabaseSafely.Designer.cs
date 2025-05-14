@@ -4,6 +4,7 @@ using BusMonitor.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BusMonitor.Migrations
 {
     [DbContext(typeof(BusMonitorDbContext))]
-    partial class BusMonitorDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250512182741_UpdateRemoteDatabaseSafely")]
+    partial class UpdateRemoteDatabaseSafely
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -161,11 +164,6 @@ namespace BusMonitor.Migrations
 
                     b.Property<int?>("Absence")
                         .HasColumnType("int");
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("Grade")
                         .IsRequired()

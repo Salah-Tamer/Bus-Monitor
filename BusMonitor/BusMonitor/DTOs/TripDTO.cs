@@ -8,6 +8,7 @@ namespace BusMonitor.DTOs
         public string BusNumber { get; set; }
         public int RouteId { get; set; }
         public string RouteName { get; set; }
+        public string RouteStops { get; set; }
         public int? DriverId { get; set; }
         public string DriverName { get; set; }
         public int? SupervisorId { get; set; }

@@ -10,6 +10,7 @@ using BusMonitor.DTOs;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 using System;
+using System.Linq;
 
 namespace BusMonitor.Controllers
 {
@@ -165,6 +166,52 @@ namespace BusMonitor.Controllers
         private bool UserExists(int id)
         {
             return _context.Users.Any(e => e.Id == id);
+        }
+
+        // GET: api/Users/drivers
+        [HttpGet("drivers")]
+        [Authorize(Roles = "Admin")] // Only Admins can get all drivers
+        public async Task<ActionResult<IEnumerable<UserDTO>>> GetDrivers()
+        {
+            var drivers = await _context.Users
+                .Where(u => u.Role == Role.Driver)
+                .ToListAsync();
+                
+            return Ok(_mapper.Map<IEnumerable<UserDTO>>(drivers));
+        }
+
+        // GET: api/Users/students
+        [HttpGet("students")]
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult<IEnumerable<StudentDTO>>> GetAllStudents()
+        {
+            var students = await _context.Students
+                .Include(s => s.Parent)
+                .ToListAsync();
+
+            return Ok(_mapper.Map<IEnumerable<StudentDTO>>(students));
+        }
+
+        // GET: api/Users/buses
+        [HttpGet("buses")]
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult<IEnumerable<BusDTO>>> GetAllBuses()
+        {
+            var buses = await _context.Buses
+                .ToListAsync();
+
+            return Ok(_mapper.Map<IEnumerable<BusDTO>>(buses));
+        }
+
+        // GET: api/Users/routes
+        [HttpGet("routes")]
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult<IEnumerable<RouteDTO>>> GetAllRoutes()
+        {
+            var routes = await _context.Routes
+                .ToListAsync();
+
+            return Ok(_mapper.Map<IEnumerable<RouteDTO>>(routes));
         }
     }
 } 
