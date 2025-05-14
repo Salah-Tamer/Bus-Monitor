@@ -48,6 +48,11 @@ namespace BusMonitor.Services
             return user;
         }
 
+        /*
+        * ORIGINAL CODE (REFACTORED):
+        * This implementation mixed configuration validation with token generation logic.
+        * The refactored version below separates these concerns for better readability and maintainability.
+        *
         public string GenerateJwtToken(User user)
         {
             try
@@ -93,6 +98,79 @@ namespace BusMonitor.Services
                 Console.WriteLine($"Error generating token: {ex.Message}");
                 throw;
             }
+        }
+        */
+
+        public string GenerateJwtToken(User user)
+        {
+            try
+            {
+                var jwtConfig = ValidateAndGetJwtConfiguration();
+                var claims = CreateUserClaims(user);
+                var token = CreateSecurityToken(claims, jwtConfig);
+                
+                return new JwtSecurityTokenHandler().WriteToken(token);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error generating token: {ex.Message}");
+                throw;
+            }
+        }
+
+        private (string key, string issuer, string audience, double expiryDays) ValidateAndGetJwtConfiguration()
+        {
+            var key = _configuration["Jwt:Key"];
+            if (string.IsNullOrEmpty(key))
+            {
+                throw new ArgumentNullException(nameof(key), "JWT key is not configured.");
+            }
+            
+            var issuer = _configuration["Jwt:Issuer"];
+            if (string.IsNullOrEmpty(issuer))
+            {
+                throw new ArgumentNullException(nameof(issuer), "JWT issuer is not configured.");
+            }
+            
+            var audience = _configuration["Jwt:Audience"];
+            if (string.IsNullOrEmpty(audience))
+            {
+                throw new ArgumentNullException(nameof(audience), "JWT audience is not configured.");
+            }
+
+            var expiryDays = Convert.ToDouble(_configuration["Jwt:ExpiryInDays"] ?? "7");
+            
+            return (key, issuer, audience, expiryDays);
+        }
+
+        private ClaimsIdentity CreateUserClaims(User user)
+        {
+            return new ClaimsIdentity(new[]
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Name, user.Username),
+                new Claim(ClaimTypes.Role, user.Role.ToString())
+            });
+        }
+
+        private SecurityToken CreateSecurityToken(ClaimsIdentity claims, (string key, string issuer, string audience, double expiryDays) jwtConfig)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var keyBytes = Encoding.ASCII.GetBytes(jwtConfig.key);
+            
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = claims,
+                Expires = DateTime.UtcNow.AddDays(jwtConfig.expiryDays),
+                SigningCredentials = new SigningCredentials(
+                    new SymmetricSecurityKey(keyBytes), 
+                    SecurityAlgorithms.HmacSha256Signature
+                ),
+                Issuer = jwtConfig.issuer,
+                Audience = jwtConfig.audience
+            };
+            
+            return tokenHandler.CreateToken(tokenDescriptor);
         }
 
         public async Task<User?> GetUserByIdAsync(int id)
